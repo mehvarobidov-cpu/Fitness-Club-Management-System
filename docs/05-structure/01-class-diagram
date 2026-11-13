@@ -1,0 +1,109 @@
+@startuml
+title Диаграммаи синфҳо — Fitness Club Management
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+class User {
+  +id: int
+  +fullName: string
+  +email: string
+  +passwordHash: string
+  +role: UserRole
+  +status: string
+  +register()
+  +login()
+}
+class Client {
+  +id: int
+  +userId: int
+  +phone: string
+  +birthDate: date
+  +viewMembership()
+  +bookSession()
+}
+class Trainer {
+  +id: int
+  +userId: int
+  +specialization: string
+  +experienceYears: int
+  +viewSchedule()
+  +recordAttendance()
+}
+class MembershipPlan {
+  +id: int
+  +name: string
+  +durationDays: int
+  +price: decimal
+  +description: string
+}
+class Membership {
+  +id: int
+  +clientId: int
+  +planId: int
+  +startDate: date
+  +endDate: date
+  +status: string
+  +isActive(): bool
+}
+class Service {
+  +id: int
+  +name: string
+  +description: string
+  +price: decimal
+}
+class TrainingSession {
+  +id: int
+  +trainerId: int
+  +serviceId: int
+  +startAt: datetime
+  +endAt: datetime
+  +capacity: int
+  +status: string
+  +hasAvailablePlaces(): bool
+}
+class Booking {
+  +id: int
+  +clientId: int
+  +sessionId: int
+  +bookedAt: datetime
+  +status: string
+  +cancel()
+}
+class Attendance {
+  +id: int
+  +bookingId: int
+  +markedBy: int
+  +attendedAt: datetime
+  +status: string
+}
+class Payment {
+  +id: int
+  +clientId: int
+  +membershipId: int
+  +amount: decimal
+  +paidAt: datetime
+  +method: string
+  +status: string
+}
+enum UserRole {
+  ADMIN
+  MANAGER
+  TRAINER
+  CLIENT
+}
+
+User "1" -- "0..1" Client
+User "1" -- "0..1" Trainer
+User --> UserRole
+Client "1" -- "0..*" Membership
+MembershipPlan "1" -- "0..*" Membership
+Client "1" -- "0..*" Booking
+TrainingSession "1" -- "0..*" Booking
+Trainer "1" -- "0..*" TrainingSession
+Service "1" -- "0..*" TrainingSession
+Booking "1" -- "0..1" Attendance
+User "1" -- "0..*" Attendance : сабт мекунад
+Client "1" -- "0..*" Payment
+Membership "0..1" -- "0..*" Payment
+@enduml
