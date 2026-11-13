@@ -1,0 +1,48 @@
+@startuml
+title Диаграммаи пайдарпайӣ: фиристодани дархости брон
+autonumber
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam sequence {
+  ArrowColor #2874A6
+  LifeLineBorderColor #7F8C8D
+  LifeLineBackgroundColor #F8F9F9
+  ParticipantBorderColor #2874A6
+  ParticipantBackgroundColor #EAF2F8
+}
+
+actor "Мизоҷ" as Client
+boundary "Веб-интерфейс" as UI
+control "BookingHandler" as Handler
+control "BookingService" as Service
+database "MySQL" as DB
+
+Client -> UI: Интихоби машғулият ва пахши «Брон кардан»
+UI -> Handler: POST /api/bookings
+Handler -> Handler: Санҷиши сессия ва маълумоти дархост
+Handler -> Service: CreateBooking(clientID, sessionID)
+
+Service -> DB: Оғози транзаксия
+Service -> DB: Гирифтани машғулият ва санҷиши ҷойҳо
+DB --> Service: Маълумоти машғулият ва capacity
+
+Service -> DB: Санҷиши узвияти фаъол
+DB --> Service: Ҳолати узвият
+
+Service -> DB: Санҷиши бронкунии такрорӣ
+DB --> Service: Натиҷаи санҷиш
+
+alt Машғулият фаъол, ҷой ҳаст, узвият фаъол ва брон такрорӣ нест
+  Service -> DB: INSERT booking
+  Service -> DB: Навсозии ҷойҳои дастрас
+  Service -> DB: COMMIT
+  Service --> Handler: Брони бомуваффақият
+  Handler --> UI: HTTP 201 + маълумоти брон
+  UI --> Client: Намоиши тасдиқи брон
+else Яке аз шартҳо иҷро нашуд
+  Service -> DB: ROLLBACK
+  Service --> Handler: Хатои мувофиқ
+  Handler --> UI: HTTP 4xx + паёми хатогӣ
+  UI --> Client: Намоиши сабаби рад шудани брон
+end
+@enduml
