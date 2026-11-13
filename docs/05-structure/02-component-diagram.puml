@@ -1,0 +1,46 @@
+@startuml
+title Диаграммаи компонентҳо — Fitness Club Management
+skinparam componentStyle rectangle
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam packageStyle rectangle
+
+actor "Мизоҷ / Корманд" as User
+
+package "Қабати интерфейс" {
+  [Веб-интерфейс\nHTML / CSS / JavaScript] as Web
+}
+
+package "Қабати сервер (Go)" {
+  [HTTP Router] as Router
+  [Auth ва Session] as Auth
+  [Идоракунии муштариён] as Clients
+  [Идоракунии мураббиён] as Trainers
+  [Узвият ва хизматрасониҳо] as Membership
+  [Ҷадвал ва бронкунӣ] as Booking
+  [Ҳозиршавӣ ва пардохтҳо] as Operations
+  [Ҳисоботҳо] as Reports
+}
+
+package "Қабати додаҳо" {
+  database "MySQL 8.0+" as DB
+}
+
+User --> Web
+Web --> Router : HTTP / JSON
+Router --> Auth
+Router --> Clients
+Router --> Trainers
+Router --> Membership
+Router --> Booking
+Router --> Operations
+Router --> Reports
+
+Auth --> DB
+Clients --> DB
+Trainers --> DB
+Membership --> DB
+Booking --> DB
+Operations --> DB
+Reports --> DB
+@enduml
