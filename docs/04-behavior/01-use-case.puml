@@ -1,0 +1,88 @@
+@startuml
+' Диаграммаи вариантҳои истифода барои системаи идоракунии фитнес-клуб
+left to right direction
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor #F7FAFC
+  BorderColor #334155
+  ArrowColor #475569
+}
+
+actor "Маъмур" as Admin
+actor "Менеҷер" as Manager
+actor "Мураббӣ" as Trainer
+actor "Мизоҷ" as Client
+
+rectangle "Веб-барномаи идоракунии фитнес-клуб" {
+  usecase "Ворид шудан ба система" as UC_Login
+  usecase "Баромадан аз система" as UC_Logout
+
+  usecase "Идоракунии корбарон\nва нақшҳо" as UC_Users
+  usecase "Идоракунии мизоҷон" as UC_Clients
+  usecase "Идоракунии мураббиён" as UC_Trainers
+  usecase "Идоракунии хизматрасониҳо" as UC_Services
+  usecase "Идоракунии намудҳои обуна" as UC_MembershipTypes
+  usecase "Ба расмият даровардан\nва тамдиди обуна" as UC_Memberships
+  usecase "Бақайдгирии пардохт" as UC_Payments
+
+  usecase "Идоракунии ҷадвали машқҳо" as UC_Schedule
+  usecase "Таъини мураббӣ ба машқ" as UC_AssignTrainer
+  usecase "Дидани ҷадвали машқҳо" as UC_ViewSchedule
+  usecase "Сабт ба машғулият" as UC_Booking
+  usecase "Бекор кардани сабт" as UC_CancelBooking
+  usecase "Санҷидани ҷойҳои холӣ" as UC_CheckCapacity
+  usecase "Санҷидани эътибори обуна" as UC_CheckMembership
+
+  usecase "Дидани рӯйхати иштирокчиён" as UC_Participants
+  usecase "Қайд кардани ҳозиршавӣ" as UC_Attendance
+  usecase "Дидани таърихи ҳозиршавӣ" as UC_History
+  usecase "Дидани обунаи шахсӣ" as UC_MyMembership
+  usecase "Идоракунии профили шахсӣ" as UC_Profile
+  usecase "Дидани ҳисоботҳо" as UC_Reports
+}
+
+Admin --> UC_Login
+Admin --> UC_Logout
+Admin --> UC_Users
+Admin --> UC_Clients
+Admin --> UC_Trainers
+Admin --> UC_Services
+Admin --> UC_MembershipTypes
+Admin --> UC_Memberships
+Admin --> UC_Payments
+Admin --> UC_Schedule
+Admin --> UC_Reports
+
+Manager --> UC_Login
+Manager --> UC_Logout
+Manager --> UC_Clients
+Manager --> UC_Memberships
+Manager --> UC_Payments
+Manager --> UC_ViewSchedule
+Manager --> UC_Booking
+Manager --> UC_CancelBooking
+Manager --> UC_Attendance
+
+Trainer --> UC_Login
+Trainer --> UC_Logout
+Trainer --> UC_ViewSchedule
+Trainer --> UC_Participants
+Trainer --> UC_Attendance
+
+Client --> UC_Login
+Client --> UC_Logout
+Client --> UC_ViewSchedule
+Client --> UC_Booking
+Client --> UC_CancelBooking
+Client --> UC_MyMembership
+Client --> UC_History
+Client --> UC_Profile
+
+UC_Schedule .> UC_AssignTrainer : <<include>>
+UC_Booking .> UC_CheckCapacity : <<include>>
+UC_Booking .> UC_CheckMembership : <<include>>
+UC_CancelBooking .> UC_Booking : <<extend>>
+
+@enduml

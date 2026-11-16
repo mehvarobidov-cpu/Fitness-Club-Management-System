@@ -1,0 +1,97 @@
+@startuml
+title Диаграммаи робитаҳои пойгоҳи додаҳо — Fitness Club Management
+hide circle
+skinparam linetype ortho
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+entity users {
+  * id : BIGINT <<PK>>
+  --
+  full_name : VARCHAR
+  email : VARCHAR <<UQ>>
+  password_hash : VARCHAR
+  role : ENUM
+  status : ENUM
+}
+entity clients {
+  * id : BIGINT <<PK>>
+  --
+  user_id : BIGINT <<FK, UQ>>
+  birth_date : DATE
+}
+entity trainers {
+  * id : BIGINT <<PK>>
+  --
+  user_id : BIGINT <<FK, UQ>>
+  specialization : VARCHAR
+}
+entity membership_plans {
+  * id : BIGINT <<PK>>
+  --
+  name : VARCHAR
+  duration_days : SMALLINT
+  price : DECIMAL
+}
+entity memberships {
+  * id : BIGINT <<PK>>
+  --
+  client_id : BIGINT <<FK>>
+  plan_id : BIGINT <<FK>>
+  start_date : DATE
+  end_date : DATE
+  status : ENUM
+}
+entity services {
+  * id : BIGINT <<PK>>
+  --
+  name : VARCHAR
+  price : DECIMAL
+}
+entity training_sessions {
+  * id : BIGINT <<PK>>
+  --
+  service_id : BIGINT <<FK>>
+  trainer_id : BIGINT <<FK>>
+  starts_at : DATETIME
+  ends_at : DATETIME
+  capacity : SMALLINT
+}
+entity bookings {
+  * id : BIGINT <<PK>>
+  --
+  client_id : BIGINT <<FK>>
+  session_id : BIGINT <<FK>>
+  status : ENUM
+  --
+  <<UQ(client_id, session_id)>>
+}
+entity attendance {
+  * id : BIGINT <<PK>>
+  --
+  booking_id : BIGINT <<FK, UQ>>
+  marked_by : BIGINT <<FK>>
+  attendance_status : ENUM
+}
+entity payments {
+  * id : BIGINT <<PK>>
+  --
+  client_id : BIGINT <<FK>>
+  membership_id : BIGINT <<FK, nullable>>
+  amount : DECIMAL
+  payment_status : ENUM
+}
+
+users ||--o| clients
+users ||--o| trainers
+clients ||--o{ memberships
+membership_plans ||--o{ memberships
+clients ||--o{ bookings
+training_sessions ||--o{ bookings
+trainers ||--o{ training_sessions
+services ||--o{ training_sessions
+bookings ||--o| attendance
+users ||--o{ attendance : "сабт мекунад"
+clients ||--o{ payments
+memberships |o--o{ payments
+@enduml

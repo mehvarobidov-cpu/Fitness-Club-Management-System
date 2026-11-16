@@ -1,0 +1,25 @@
+@startuml
+title Диаграммаи ҷойгиркунӣ — Fitness Club Management
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+node "Дастгоҳи истифодабаранда" as ClientDevice {
+  artifact "Веб-браузер" as Browser
+}
+
+node "Сервери барнома" as AppServer {
+  artifact "Go Web Server" as GoServer
+  artifact "Frontend\nHTML / CSS / JavaScript" as Frontend
+}
+
+database "Сервери пойгоҳи додаҳо\nMySQL 8.0+" as Database {
+  artifact "fitness_club_db" as Schema
+}
+
+cloud "Шабакаи маҳаллӣ / Интернет" as Network
+
+Browser --> Network : HTTPS
+Network --> GoServer : HTTP(S) / REST API
+GoServer --> Frontend : пешниҳоди файлҳои веб
+GoServer --> Database : TCP / MySQL
+@enduml

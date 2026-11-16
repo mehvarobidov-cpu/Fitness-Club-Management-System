@@ -1,0 +1,100 @@
+@startuml 07-deployment
+title Fitness Club Management — Диаграммаи ҷойгиркунӣ (Deployment Diagram)
+
+skinparam shadowing false
+skinparam packageStyle rectangle
+skinparam defaultTextAlignment center
+skinparam defaultFontName Arial
+
+node "Дастгоҳи истифодабаранда" as ClientDevice {
+  artifact "Веб-браузер" as Browser
+  artifact "Веб-интерфейси Fitness Club" as WebUI
+}
+
+cloud "Интернет / Шабакаи маҳаллӣ" as Network
+
+node "Сервери барнома" as AppServer {
+  artifact "Веб-барномаи Fitness Club" as Application
+  component "REST API (Go)" as API
+  component "Аутентификатсия\nва авторизатсия" as Auth
+  component "Модули муштариён\nва мураббиён" as People
+  component "Модули узвият\nва хизматрасониҳо" as Membership
+  component "Модули ҷадвал\nва бронкунӣ" as Booking
+  component "Модули ҳозиршавӣ\nва пардохтҳо" as Operations
+  component "Модули ҳисоботҳо" as Reports
+}
+
+node "Сервери пойгоҳи додаҳо" as DBServer {
+  database "Пойгоҳи додаҳои Fitness Club\n(MySQL 8.0+)" as Database {
+    folder "Ҷадвалҳои асосӣ" {
+      artifact "users"
+      artifact "clients"
+      artifact "trainers"
+      artifact "membership_plans"
+      artifact "memberships"
+      artifact "services"
+      artifact "training_sessions"
+      artifact "bookings"
+      artifact "attendance"
+      artifact "payments"
+    }
+  }
+}
+
+node "Сервери нигоҳдории файлҳо\n(ихтиёрӣ)" as FileServer {
+  folder "Файлҳои боршуда" as StoredFiles {
+    artifact "Аксҳои профилӣ"
+    artifact "Аксҳои хизматрасонӣ"
+  }
+}
+
+cloud "Хизматрасониҳои беруна\n(дар сурати пайвасткунӣ)" as ExternalServices {
+  node "Провайдери Email / SMS" as MessageProvider
+  node "Провайдери пардохти онлайн" as PaymentProvider
+}
+
+Browser --> WebUI : HTTPS
+WebUI --> Network : HTTPS
+Network --> API : HTTPS / REST API
+
+API --> Auth : Санҷиши шахсият ва ҳуқуқ
+API --> People : Дархостҳои муштариён ва мураббиён
+API --> Membership : Дархостҳои узвият ва хизматрасонӣ
+API --> Booking : Дархостҳои ҷадвал ва брон
+API --> Operations : Ҳозиршавӣ ва пардохт
+API --> Reports : Дархостҳои ҳисобот
+
+Auth --> Database : SQL
+People --> Database : SQL
+Membership --> Database : SQL
+Booking --> Database : SQL / транзаксия
+Operations --> Database : SQL / транзаксия
+Reports --> Database : SQL
+
+API --> StoredFiles : Боркунӣ ва гирифтани файлҳо
+API --> MessageProvider : HTTPS API (ихтиёрӣ)
+Operations --> PaymentProvider : HTTPS API (ихтиёрӣ)
+
+note right of AppServer
+  Сервери Go мантиқи тиҷоратиро иҷро мекунад.
+  Ҳуқуқи дастрасӣ дар Backend санҷида мешавад.
+  Санҷиши узвият, ҷойҳои холӣ ва бронкунии
+  такрорӣ бояд дар сервер иҷро гардад.
+  Амалиёти бронкунӣ дар транзаксия анҷом дода мешавад.
+end note
+
+note bottom of DBServer
+  Маълумоти муштариён, мураббиён,
+  узвият, ҷадвал, брон, ҳозиршавӣ
+  ва пардохтҳо дар MySQL нигоҳ дошта мешавад.
+  Паролҳо танҳо дар шакли hash сабт мешаванд.
+end note
+
+note bottom of ExternalServices
+  Интегратсияи Email / SMS ва пардохти онлайн
+  имконияти иловагӣ мебошад.
+  Агар дар версияи аввал истифода нашавад,
+  ин пайвастҳо фаъол карда намешаванд.
+end note
+
+@enduml
