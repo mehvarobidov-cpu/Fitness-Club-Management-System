@@ -1,328 +1,90 @@
-# Коркарди веб-барномаи идоракунии фитнес-клуб
+# FCMS — Public Directory
 
-Веб-барнома барои автоматикунонии фаъолияти фитнес-клуб: идоракунии мизоҷон, мураббиён, обунаҳо, хизматрасониҳо, ҷадвали машқҳо ва ҳозиршавӣ.
+This package adapts the `public/` architecture of the EDMS reference repository to the current PHP version of **Fitness-Club-Management-System (FCMS)**.
 
-## Мундариҷа
-
-- [Дар бораи лоиҳа](#дар-бораи-лоиҳа)
-- [Мақсад ва вазифаҳо](#мақсад-ва-вазифаҳо)
-- [Нақшҳои корбарон](#нақшҳои-корбарон)
-- [Имкониятҳои функсионалӣ](#имкониятҳои-функсионалӣ)
-- [Технологияҳои истифодашаванда](#технологияҳои-истифодашаванда)
-- [Сохтори репозиторий](#сохтори-репозиторий)
-- [Марҳилаҳои иҷрои корҳои лабораторӣ](#марҳилаҳои-иҷрои-корҳои-лабораторӣ)
-- [Равандҳои асосии корӣ](#равандҳои-асосии-корӣ)
-- [Сохтори пешакии пойгоҳи додаҳо](#сохтори-пешакии-пойгоҳи-додаҳо)
-- [Тартиби оғоз кардани лоиҳа](#тартиби-оғоз-кардани-лоиҳа)
-- [Санҷиши система](#санҷиши-система)
-- [Иҷозатнома](#иҷозатнома)
-
-## Дар бораи лоиҳа
-
-**«Коркарди веб-барномаи идоракунии фитнес-клуб»** лоиҳаи таълимӣ мебошад, ки барои сохтани системаи ягонаи иттилоотӣ ҷиҳати автоматикунонии равандҳои асосии фитнес-клуб пешбинӣ шудааст.
-
-Система маълумотро дар бораи мизоҷон, муҳлати обунаҳо, ҷадвали машқҳо ва ҳозиршавӣ мутамарказ нигоҳ медорад. Маъмур метавонад мизоҷон, мураббиён, хизматрасониҳо ва ҷадвалро идора кунад. Мураббиён машғулиятҳо ва рӯйхати иштирокчиёнро мебинанд. Мизоҷон хизматрасониҳо ва машқҳои дастрасро дида, ба онҳо сабт шуда метавонанд.
-
-### Маълумоти асосӣ
-
-| Параметр | Қимат |
-|---|---|
-| Номи лоиҳа | Fitness Club Management System |
-| Навъи лоиҳа | Веб-барнома |
-| Вазифа | Автоматикунонии идоракунии фитнес-клуб |
-| Backend | Go (Golang) |
-| Frontend | HTML, CSS, JavaScript |
-| Пойгоҳи додаҳо | MySQL 8.0+ |
-| Муҳити коркард | Visual Studio Code |
-| Муҳити маҳаллӣ | Windows, XAMPP |
-| Идоракунии версияҳо | Git ва GitHub |
-
-## Мақсад ва вазифаҳо
-
-### Мақсад
-
-Коркарди веб-барнома барои идоракунии мутамаркази равандҳои асосии фитнес-клуб ва осон намудани фаъолияти маъмурият, мураббиён ва мизоҷон.
-
-### Вазифаҳо
-
-1. Омӯзиши соҳаи мавзӯӣ ва равандҳои кори фитнес-клуб.
-2. Таҳлили системаҳои мавҷудаи идоракунии фитнес-клубҳо.
-3. Муайян кардани талаботи функсионалӣ ва ғайрифунксионалӣ.
-4. Муайян кардани нақшҳои корбарон ва ҳуқуқи дастрасии онҳо.
-5. Тарҳрезии меъмории веб-барнома.
-6. Тарҳрезии модели пойгоҳи додаҳои MySQL.
-7. Коркарди бақайдгирӣ, воридшавӣ ва идоракунии корбарон.
-8. Коркарди модулҳои идоракунии мизоҷон ва мураббиён.
-9. Идоракунии хизматрасониҳо ва обунаҳо.
-10. Тартиб додани ҷадвали машқҳои гурӯҳӣ ва инфиродӣ.
-11. Сабти мизоҷон ба машқҳо ва баҳисобгирии ҳозиршавӣ.
-12. Таҳия ва санҷиши ҳисоботҳо.
-
-## Нақшҳои корбарон
-
-| Нақш | Имкониятҳо |
-|---|---|
-| **Маъмур (Administrator)** | Идоракунии корбарон, мизоҷон, мураббиён, хизматрасониҳо, обунаҳо, ҷадвал, сабтҳо ва ҳисоботҳо. |
-| **Менеҷер (Manager)** | Бақайдгирии мизоҷон, ба расмият даровардан ва тамдиди обунаҳо, сабти пардохтҳо ва баҳисобгирии ҳозиршавӣ дар доираи ҳуқуқҳои додашуда. |
-| **Мураббӣ (Trainer)** | Дидани ҷадвали шахсӣ, рӯйхати мизоҷони сабтшуда ва қайд кардани ҳозиршавӣ. |
-| **Мизоҷ (Client)** | Дидани хизматрасониҳо, ҷадвал ва обунаи шахсӣ, сабт ба машқҳо ва дидани таърихи ҳозиршавӣ. |
-
-## Имкониятҳои функсионалӣ
-
-### 1. Бақайдгирӣ ва воридшавӣ
-- Бақайдгирӣ ва воридшавии корбарон.
-- Баромадан аз ҳисоб.
-- Ҷудо кардани ҳуқуқи дастрасӣ аз рӯйи нақш.
-- Идоракунии профили корбар.
-
-### 2. Идоракунии мизоҷон
-- Илова, дидан ва таҳрири маълумоти мизоҷон.
-- Ҷустуҷӯ аз рӯйи ном, рақами телефон ё почтаи электронӣ.
-- Дидани таърихи обунаҳо ва ҳозиршавӣ.
-
-### 3. Идоракунии мураббиён
-- Илова ва таҳрири профили мураббиён.
-- Нигоҳдории маълумоти тамос ва ихтисос.
-- Таъини мураббӣ ба машғулиятҳо.
-- Дидани ҷадвали мураббӣ.
-
-### 4. Идоракунии хизматрасониҳо ва обунаҳо
-- Сохтани намудҳои обуна.
-- Муайян кардани нарх ва муҳлати амал.
-- Муайян кардани шумораи ташрифҳо ва хизматрасониҳои дохилшуда.
-- Ба расмият даровардан ва тамдиди обунаҳо.
-- Назорати обунаҳои фаъол ва муҳлаташон гузашта.
-
-### 5. Идоракунии ҷадвали машқҳо
-- Сохтани машқҳои гурӯҳӣ ва инфиродӣ.
-- Таъини мураббӣ.
-- Муайян кардани сана, вақт ва давомнокӣ.
-- Муайян кардани шумораи ҳадди аксари иштирокчиён.
-- Тағйир додан ва бекор кардани машғулиятҳо.
-
-### 6. Сабт ба машқҳо
-- Дидани машғулиятҳои дастрас.
-- Сабти мизоҷ ба машқ.
-- Санҷидани ҷойҳои холӣ.
-- Бекор кардани сабт тибқи қоидаҳои клуб.
-- Дидани рӯйхати иштирокчиён.
-
-### 7. Баҳисобгирии ҳозиршавӣ
-- Қайд кардани ҳозиршавӣ ё набудани мизоҷ.
-- Дидани таърихи ташрифҳо.
-- Ҳисоб кардани ташрифҳои истифодашуда аз рӯйи обуна.
-
-### 8. Пардохт ва ҳисобот
-- Бақайдгирии маълумот дар бораи пардохт.
-- Дидани таърихи пардохтҳо.
-- Дидани шумораи мизоҷони фаъол ва обунаҳо.
-- Таҳияи маълумоти ҷамъбастӣ оид ба машқҳо ва ҳозиршавӣ.
-
-## Технологияҳои истифодашаванда
-
-| Технология | Вазифа |
-|---|---|
-| Go (Golang) | Қисми серверӣ ва REST API |
-| HTML5 | Сохтори саҳифаҳои веб |
-| CSS3 | Ороиш ва мутобиқшавии интерфейс |
-| JavaScript | Мантиқи қисми муштарӣ ва ҳамкорӣ бо API |
-| MySQL 8.0+ | Нигоҳдории маълумоти система |
-| `database/sql` | Пайвастшавии Go бо пойгоҳи додаҳо |
-| JSON | Формати мубодилаи маълумот |
-| Visual Studio Code | Муҳити коркард |
-| XAMPP | Оғози маҳаллии MySQL ва phpMyAdmin |
-| Postman | Санҷиши API |
-| Git ва GitHub | Идоракунии версияҳо ва нигоҳдории рамзи барнома |
-
-## Сохтори репозиторий
-
-Сохтори пешбинишудаи лоиҳа:
+## What's included
 
 ```text
-fitness-club-management/
-│
-├── cmd/
-│   └── server/
-│       └── main.go
-│
-├── internal/
-│   ├── config/
-│   ├── auth/
-│   ├── users/
-│   ├── clients/
-│   ├── trainers/
-│   ├── memberships/
-│   ├── services/
-│   ├── schedules/
-│   ├── bookings/
-│   ├── attendance/
-│   ├── payments/
-│   └── storage/
-│
-├── web/
-│   ├── index.html
-│   ├── pages/
-│   ├── components/
-│   └── static/
-│       ├── css/
-│       ├── js/
-│       └── images/
-│
-├── database/
-│   ├── schema.sql
-│   └── seeds.sql
-│
-├── docs/
-│   ├── 01-domain-analysis.md
-│   ├── 02-comparison-matrix.md
-│   ├── 03-short-spec.md
-│   ├── 04-behavior/
-│   ├── 05-structure/
-│   ├── 06-er-diagram.puml
-│   ├── 06-logical-model.md
-│   ├── 07-deployment.puml
-│   └── 02-screens/
-│
-├── .env.example
-├── .gitignore
-├── go.mod
-├── go.sum
-└── README.md
+public/
+├── .htaccess
+├── index.php                    # front controller / allow-listed router
+├── favicon.svg
+├── README.md
+├── assets/
+│   ├── app.js                   # compatibility loader for current config.php
+│   ├── style.css                # compatibility stylesheet entrypoint
+│   ├── css/
+│   │   └── app.css              # FCMS design tokens + responsive UI styles
+│   ├── js/
+│   │   └── app.js               # progressive enhancements
+│   └── images/
+│       └── fitness-mark.svg     # editable vector brand mark
+└── static/
+    ├── dashboard-preview.html   # visual admin dashboard sample
+    ├── schedule-preview.html    # weekly schedule sample
+    └── client-portal-preview.html
 ```
 
-Сохтори репозиторий ҳангоми коркард метавонад пурра карда шавад. Каталоги `docs/` барои ҳуҷҷатҳои лоиҳа, схемаҳо ва диаграммаҳо истифода мешавад.
+## Important compatibility decision
 
-## Марҳилаҳои иҷрои корҳои лабораторӣ
+The current FCMS repository is not yet organized as a full MVC application. Its live PHP pages (`index.php`, `login.php`, `register.php`, `admin.php`, `schedule.php`, `account.php`, `trainer.php`, and `logout.php`) and `config.php` currently live in the repository root. Those files are **not moved or rewritten** by this package.
 
-| № | Номи кори лабораторӣ | Натиҷа |
-|---:|---|---|
-| 01 | Таҳлили соҳаи мавзӯӣ | `docs/01-domain-analysis.md` |
-| 02 | Таҳлил ва муқоисаи системаҳои монанд | `docs/02-comparison-matrix.md` |
-| 03 | Таҳияи супориши кӯтоҳи техникӣ | `docs/03-short-spec.md` |
-| 04 | Моделсозии рафтори система (UML) | `docs/04-behavior/` |
-| 05 | Моделсозии сохтори система (UML) | `docs/05-structure/` |
-| 06 | Тарҳрезии пойгоҳи додаҳо ва ER-диаграмма | `docs/06-er-diagram.puml` |
-| 07 | Таҳияи SQL ва ҷойгиркунии пойгоҳи додаҳо | `database/schema.sql`, `database/seeds.sql` |
-| 08 | Таҳияи супориши пурраи техникӣ | Ҳуҷҷати техникӣ |
-| 09 | Тарҳрезии интерфейси корбар (UI/UX) | `docs/09-design/` |
-| 10 | Коркарди қисми муштарии барнома | `web/` |
-| 11 | Коркарди қисми серверии барнома | `cmd/`, `internal/` |
-| 12 | Пайвастшавӣ бо пойгоҳи додаҳо | `internal/storage/`, `database/` |
-| 13 | Амалӣ намудани модулҳои асосӣ | `internal/` |
-| 14 | Ҳамгироии frontend ва backend | Веб-барномаи коршоям |
-| 15 | Санҷиши система | Нақша ва натиҷаҳои санҷиш |
-| 16 | Ҷойгиркунӣ ва нашри лоиҳа | GitHub ва дастури оғоз |
+The new `public/index.php` maps only known page names to those existing root-level PHP files. It also calls `chdir($appRoot)` before including them, so existing statements such as `require 'config.php'` continue to work.
 
-## Равандҳои асосии корӣ
+The existing `config.php` outputs these paths:
 
-1. **Бақайдгирӣ ва воридшавӣ:** корбар ҳисоб месозад ё ба система ворид мешавад. Барнома нақши ӯро муайян карда, имкониятҳои мувофиқро пешниҳод мекунад.
-2. **Идоракунии мизоҷон:** маъмур ё менеҷер маълумоти мизоҷонро илова ва нав мекунад.
-3. **Ба расмият даровардани обуна:** навъи обуна интихоб шуда, нарх, муҳлат ва шумораи ташрифҳо сабт мегарданд.
-4. **Банақшагирии машқҳо:** маъмур машғулиятро сохта, мураббӣ, сана, вақт ва шумораи ҷойҳоро муайян мекунад.
-5. **Сабт ба машқ:** мизоҷ машғулияти холиро интихоб мекунад ва система ҷойҳои дастрасро месанҷад.
-6. **Гузаронидани машқ:** мураббӣ рӯйхати иштирокчиёнро дида, ҳозиршавиро қайд мекунад.
-7. **Назорати обуна:** муҳлати амал ва бақияи ташрифҳо санҷида мешаванд.
-8. **Ҳисобот:** маъмур маълумоти ҷамъбастиро дар бораи мизоҷон, обунаҳо, пардохтҳо ва машқҳо мегирад.
+- `assets/style.css`
+- `assets/app.js`
 
-## Сохтори пешакии пойгоҳи додаҳо
+Therefore this package includes two compatibility files under `public/assets/`. They load the new, organized files in `assets/css/app.css` and `assets/js/app.js` without requiring changes to `config.php`.
 
-| Ҷадвал | Вазифа |
+## Installation — recommended layout
+
+1. Copy this `public/` directory into the root of the FCMS repository.
+2. Configure the web server's **document root** to the `public/` directory.
+3. Keep the existing PHP application files and `config.php` one directory above `public/`.
+4. Enable Apache `mod_rewrite` and allow `.htaccess` overrides (`AllowOverride All`). The included `.htaccess` routes legacy PHP URLs through the front controller while serving real assets directly.
+5. Check the database connection in the existing root `config.php` and set the correct credentials for the target hosting environment. This package intentionally does not change database credentials or business logic.
+6. Test `/`, `/login.php`, `/register.php`, `/schedule.php`, `/account.php`, `/trainer.php`, and `/admin.php` after deployment.
+
+### Routes supported by the front controller
+
+Both clean and legacy URLs are supported:
+
+| Clean URL | Existing root PHP page |
 |---|---|
-| `users` | Ҳисобҳои корбарӣ, маълумоти воридшавӣ ва нақшҳо |
-| `clients` | Маълумоти шахсии мизоҷон |
-| `trainers` | Маълумот дар бораи мураббиён ва ихтисоси онҳо |
-| `membership_types` | Намудҳои обуна, нарх ва шартҳо |
-| `memberships` | Обунаҳои ба мизоҷон додашуда |
-| `services` | Хизматрасониҳо ва самтҳои фитнес-клуб |
-| `training_sessions` | Машқҳои гурӯҳӣ ва инфиродӣ |
-| `bookings` | Сабти мизоҷон ба машғулиятҳо |
-| `attendance` | Баҳисобгирии ҳозиршавӣ |
-| `payments` | Маълумот дар бораи пардохтҳо |
+| `/` or `/home` | `index.php` |
+| `/login` or `/login.php` | `login.php` |
+| `/register` or `/register.php` | `register.php` |
+| `/logout` or `/logout.php` | `logout.php` |
+| `/schedule` or `/schedule.php` | `schedule.php` |
+| `/account` or `/account.php` | `account.php` |
+| `/trainer` or `/trainer.php` | `trainer.php` |
+| `/admin` or `/admin.php` | `admin.php` |
 
-Сохтори ниҳоии ҷадвалҳо, майдонҳо, калидҳои ибтидоӣ ва хориҷӣ ҳангоми иҷрои корҳои лабораторӣ оид ба тарҳрезии пойгоҳи додаҳо муайян карда мешавад.
+Query strings such as `?w=1` and `?tab=cls` are preserved by Apache's rewrite rule.
 
-## Тартиби оғоз кардани лоиҳа
+## If the hosting provider cannot set `public/` as document root
 
-Дар марҳилаи аввал репозиторий ҳуҷҷатҳо ва сохтори пешакии барномаро дар бар мегирад. Дастури зер баъд аз амалӣ шудани қисми рамзӣ пурра истифода мешавад.
+Do not deploy this package as-is with the repository root still exposed as the web root. In that case, either:
 
-### 1. Талаботи аввалия
+- keep the current root deployment and copy only the styles/scripts from `public/assets/css/app.css` and `public/assets/js/app.js` into the paths used by the existing `config.php`; or
+- move the application into a non-public directory and configure a supported public document root.
 
-- Go;
-- Git;
-- Visual Studio Code;
-- XAMPP бо MySQL;
-- Postman барои санҷиши API.
+The recommended arrangement keeps `config.php`, `database.sql`, and the PHP business pages outside the publicly served directory.
 
-### 2. Нусхабардории репозиторий
+## Design / behavior notes
 
-```bash
-git clone https://github.com/USERNAME/fitness-club-management.git
-cd fitness-club-management
-```
+- The CSS keeps existing class names such as `.nav`, `.hero`, `.card`, `.grid2`, `.grid3`, `.grid5`, `.stat`, `.btn`, `.form`, `.tbl`, `.badge`, `.cls`, `.tabs`, `.bar`, `.tl`, `.flash`, `.reveal`, and `.tilt` so current screens remain styled.
+- Theme variables retain the project's navy / violet / lime visual identity.
+- Responsive styles support narrow screens; `.table-cards` can turn tables into labeled cards when cells use `data-label`.
+- Focus indicators, skip-link support, status labels, and reduced-motion behavior are included.
+- JavaScript provides optional reveal/count effects, password visibility, confirmation hooks, and opt-in local list filtering. It does not add new server-side features or call invented APIs.
+- Static HTML pages in `static/` are **visual previews only**. Their sample numbers and people are fictional demo content; they are not connected to MySQL.
 
-Ба ҷойи `USERNAME` номи ҳисоби GitHub ва ба ҷойи URL суроғаи воқеии репозиторийро гузоред.
+## Security notes
 
-### 3. Сохтани пойгоҳи додаҳо
-
-1. MySQL-ро дар XAMPP оғоз кунед.
-2. phpMyAdmin-ро кушоед.
-3. Пойгоҳи додаеро бо номи `fitness_club` созед.
-4. Пас аз омода шудани скриптҳои SQL файли `database/schema.sql`-ро иҷро кунед.
-5. Агар лозим бошад, маълумоти намунавиро аз `database/seeds.sql` ворид намоед.
-
-### 4. Танзими муҳити корӣ
-
-Дар асоси `.env.example` файли `.env` созед ва параметрҳои пайвастшавӣ ба MySQL-ро нишон диҳед:
-
-```env
-HTTP_ADDR=:8080
-DATABASE_URL=user:password@tcp(127.0.0.1:3306)/fitness_club?parseTime=true
-```
-
-Номи корбар ва рамзи воқеии MySQL-и худро истифода баред. Файли `.env`-ро ба репозиторийи оммавӣ бор накунед.
-
-### 5. Насб кардани вобастагиҳо
-
-```bash
-go mod tidy
-```
-
-### 6. Оғози барнома
-
-Пас аз амалӣ шудани қисми серверӣ:
-
-```bash
-go run ./cmd/server
-```
-
-Ҳангоми бомуваффақият оғоз шудани сервер барнома аз суроғаи зерин дастрас мешавад:
-
-```text
-http://localhost:8080
-```
-
-## Санҷиши система
-
-Пас аз амалӣ шудани модулҳо санҷида мешаванд:
-- бақайдгирӣ ва воридшавии корбарон;
-- ҷудокунии ҳуқуқи дастрасӣ;
-- илова ва таҳрири маълумоти мизоҷон ва мураббиён;
-- ба расмият даровардан ва тамдиди обунаҳо;
-- сохтани ҷадвали машқҳо;
-- сабт ва бекор кардани сабт ба машғулиятҳо;
-- баҳисобгирии ҳозиршавӣ;
-- дурустии робитаҳо ва маълумоти MySQL;
-- коркарди дархостҳои нодурусти API.
-
-Барои санҷиши қисми серверии Go фармонҳои зерин истифода мешаванд:
-
-```bash
-go test ./...
-go build ./...
-```
-
-API инчунин тавассути Postman санҷида мешавад.
-
-## Иҷозатнома
-
-Лоиҳа барои мақсадҳои таълимӣ ва намоишӣ коркард мешавад. Навъи иҷозатнома баъдтар ҳангоми нашри лоиҳа муайян карда мешавад.
+- The front controller uses an allow-list of existing application pages; it does not accept arbitrary PHP file paths from a URL parameter.
+- Keep secrets and database credentials outside `public/`.
+- The current FCMS `config.php` contains hard-coded local database connection settings. Update those for the production environment before deploying; never commit real production passwords.
+- Keep CSRF validation, role checks, and all server-side authorization in the existing PHP application. Front-end styling is not a security boundary.

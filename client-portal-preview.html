@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="tg">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Намунаи кабинети шахсии мизоҷ дар FCMS">
+  <title>Утоқи шахсӣ — FCMS Demo</title>
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/css/app.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="app-sidebar">
+    <a class="sidebar-brand" href="dashboard-preview.html"><img src="../assets/images/fitness-mark.svg" alt=""><span>Фит<b style="color:var(--b)">Пулс</b></span></a>
+    <div class="sidebar-section">Кабинети мизоҷ</div>
+    <nav class="sidebar-nav"><a class="sidebar-link" href="client-portal-preview.html" aria-current="page"><span class="sidebar-icon">⌂</span><span class="sidebar-label">Шарҳи умумӣ</span></a><a class="sidebar-link" href="schedule-preview.html"><span class="sidebar-icon">▦</span><span class="sidebar-label">Ҷадвали машқҳо</span></a><a class="sidebar-link" href="#membership"><span class="sidebar-icon">▣</span><span class="sidebar-label">Абонементи ман</span></a><a class="sidebar-link" href="#history"><span class="sidebar-icon">✓</span><span class="sidebar-label">Таърихи ташрифҳо</span></a></nav>
+    <div class="sidebar-bottom"><a class="sidebar-link" href="dashboard-preview.html"><span class="sidebar-icon">←</span><span class="sidebar-label">Баромадан аз намоиш</span></a></div>
+  </aside>
+  <main class="app-main">
+    <header class="app-topbar"><span class="eyebrow" style="margin:0">FCMS · CLIENT PORTAL</span><div class="user-chip"><span class="avatar">ФР</span><span>Фирдавс Раҳимов<br><small>Мизоҷ</small></span></div></header>
+    <div class="page-content">
+      <div class="page-heading"><div><p class="eyebrow">ХУШ ОМАДЕД</p><h1>Салом, Фирдавс!</h1><p>Маълумоти абонемент ва машғулиятҳои дар пешистодаи шумо.</p></div><a class="btn" href="schedule-preview.html">Дидани ҷадвал</a></div>
+      <div class="flash">Маълумот ва номҳо намунавӣ мебошанд. Ин саҳифа ба ҳисоби воқеӣ пайваст нест.</div>
+      <section class="dashboard-grid equal">
+        <article class="card" id="membership">
+          <div class="panel-heading"><h2>Абонементи ман</h2><span class="badge s-active">Фаъол</span></div>
+          <p class="eyebrow">STANDARD · 30 РӮЗ</p>
+          <div class="price">8 <small>ташриф боқӣ</small></div>
+          <div class="progress-track"><span class="progress-fill" style="width:66.67%"></span></div>
+          <div style="display:flex;justify-content:space-between;gap:10px;margin-top:9px;color:var(--mu);font-size:11px"><span>Истифода шуд: 4</span><span>Ҳамагӣ: 12</span></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px"><div><small>Санаи оғоз</small><strong style="display:block">01.11.2026</strong></div><div><small>Санаи анҷом</small><strong style="display:block">30.11.2026</strong></div></div>
+        </article>
+        <article class="card">
+          <div class="panel-heading"><h2>Машғулияти навбатӣ</h2><span class="badge s-booked">Сабт шудааст</span></div>
+          <p class="eyebrow">СЕШАНБЕ · 24 НОЯБР</p>
+          <h2 style="font-size:23px;margin:7px 0">Фитнеси қуввагӣ</h2>
+          <p class="muted" style="font-size:12px">08:30 — 09:30 · Толори 1</p>
+          <div class="schedule-item" style="grid-template-columns:38px 1fr;margin-top:18px"><span class="avatar sm">ШК</span><div><div class="schedule-name">Шаҳбоз Каримов</div><div class="schedule-meta">Мураббии шумо</div></div></div>
+        </article>
+      </section>
+      <section class="card" style="margin-top:17px">
+        <div class="panel-heading"><h2>Сабтҳои оянда</h2><a href="schedule-preview.html">Ҷадвали пурра</a></div>
+        <div class="table-shell"><table class="table-cards"><thead><tr><th>Машғулият</th><th>Сана</th><th>Вақт</th><th>Ҳолат</th></tr></thead><tbody>
+          <tr><td data-label="Машғулият">Фитнеси қуввагӣ</td><td data-label="Сана">24.11.2026</td><td data-label="Вақт">08:30</td><td data-label="Ҳолат"><span class="badge s-booked">Сабт шудааст</span></td></tr>
+          <tr><td data-label="Машғулият">Йога</td><td data-label="Сана">26.11.2026</td><td data-label="Вақт">17:00</td><td data-label="Ҳолат"><span class="badge s-waitlist">Дар навбат</span></td></tr>
+        </tbody></table></div>
+      </section>
+      <section class="card" id="history">
+        <div class="panel-heading"><h2>Таърихи ташрифҳо</h2><span class="muted" style="font-size:11px">3 ташрифи охир</span></div>
+        <ul class="timeline"><li><strong>22.11.2026 · 09:05</strong><div class="muted" style="font-size:12px">Машқи озод · Ташриф қайд шуд</div></li><li><strong>19.11.2026 · 18:10</strong><div class="muted" style="font-size:12px">Кардио · Ташриф қайд шуд</div></li><li><strong>16.11.2026 · 08:45</strong><div class="muted" style="font-size:12px">Фитнеси қуввагӣ · Ташриф қайд шуд</div></li></ul>
+      </section>
+      <footer>FCMS · Намунаи кабинети шахсии мизоҷ</footer>
+    </div>
+  </main>
+</div>
+</body>
+</html>
